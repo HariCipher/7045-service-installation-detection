@@ -55,7 +55,7 @@ Windows logs Event ID 7045 whenever a new service is installed. Attackers abuse 
 Telemetry was generated using:
 
 ```cmd
-sc create TestService binPath= "C:\Windows\System32\cmd.exe"
+sc create TestService binPath= "C:\\Windows\\System32\\cmd.exe"
 ```
 
 The event appeared in Splunk after querying `EventCode=7045`.
@@ -76,7 +76,7 @@ The event appeared in Splunk after querying `EventCode=7045`.
 
 ## Interesting finding
 
-The test service pointed to `C:\Windows\System32\cmd.exe`. That's a legitimate Windows binary — which is exactly the problem. The raw event exposed the full executable path, startup type, service account, and service type, so even when an attacker uses a trusted binary, 7045 gives you enough context to flag it.
+The test service pointed to `C:\\Windows\\System32\\cmd.exe`. That's a legitimate Windows binary — which is exactly the problem. The raw event exposed the full executable path, startup type, service account, and service type, so even when an attacker uses a trusted binary, 7045 gives you enough context to flag it.
 
 That's what makes this event worth monitoring. The binary name alone won't always look suspicious. The combination of fields tells the real story.
 
