@@ -1,0 +1,27 @@
+title: Windows Service Installation
+id: 7045-service-install
+status: experimental
+description: Detects installation of new Windows services
+author: Harilal P
+date: 2026-05-28
+
+logsource:
+  product: windows
+  service: system
+
+detection:
+  selection:
+    EventID: 7045
+  condition: selection
+
+fields:
+  - Service_Name
+  - Service_File_Name
+  - Service_Account
+  - Service_Type
+
+level: high
+
+tags:
+  - attack.persistence
+  - attack.t1543.003

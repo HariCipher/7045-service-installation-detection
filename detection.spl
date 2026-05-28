@@ -1,0 +1,2 @@
+index=* EventCode=7045
+| table _time host ComputerName Service_Name Service_Account Service_Type
